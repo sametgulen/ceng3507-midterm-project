@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar">
+            <div class="logo">MSKÜ OBS</div>
+            <nav class="sidebar-menu">
+                <!-- Sidebar button to add a new course -->
+                <button class="sidebar-item active" data-target="add-course">
+                    <i class="icon">✙</i>
+                    <span>Add Course</span>
+                </button>
+                <!-- Sidebar button to add a new student -->
+                <button class="sidebar-item" data-target="add-student">
+                    <i class="icon">👥</i>
+                    <span>Add Student</span>
+                </button>
+                <!-- Sidebar button to assign scores to students -->
+                <button class="sidebar-item" data-target="assign-scores">
+                    <i class="icon">📝</i>
+                    <span>Assign Scores</span>
+                </button>
+                <!-- Sidebar button to manage results -->
+                <button class="sidebar-item" data-target="results-management">
+                    <i class="icon">🔍</i>
+                    <span>Results Management</span>
+                </button>
+                <!-- Sidebar button to view lecture statistics -->
+                <button class="sidebar-item" data-target="lecture-stats">
+                    <i class="icon">📈</i>
+                    <span>Lecture Statistics</span>
+                </button>
+            </nav>
+        </div>
+        
+        <main class="main-content">
+            <!-- Section to add a new course -->
+            <section id="add-course" class="content-section active">
+                <h2>Add Course</h2>
+                <form id="course-form">
+                    <input type="text" id="course-name" placeholder="Course Name" required>
+                    <select id="grading-scale" required>
+                        <option value="">Select Grading Scale</option>
+                        <option value="1">Scale 10</option>
+                        <option value="2">Scale 7</option>
+                    </select>
+                    <button type="submit">Add Course</button>
+                </form>
+            </section>
+
+            <!-- Section to add a new student -->
+            <section id="add-student" class="content-section">
+                <h2>Add Student</h2>
+                <form id="student-form">
+                    <input type="text" id="student-id" placeholder="Student ID" required>
+                    <input type="text" id="student-name" placeholder="Name" required>
+                    <input type="text" id="student-surname" placeholder="Surname" required>
+                    <button type="submit">Add Student</button>
+                </form>
+            </section>
+
+            <!-- Section to assign scores to students -->
+            <section id="assign-scores" class="content-section">
+                <h2>Assign Scores</h2>
+                <form id="score-form">
+                    <select id="assign-student" required>
+                        <option value="">Select Student</option>
+                    </select>
+                    <select id="assign-course" required>
+                        <option value="">Select Course</option>
+                    </select>
+                    <input type="number" id="midterm-score" placeholder="Midterm Score" min="0" max="100" required>
+                    <input type="number" id="final-score" placeholder="Final Score" min="0" max="100" required>
+                    <button type="submit">Assign Scores</button>
+                </form>
+            </section>
+
+            <!-- Section to manage results -->
+            <section id="results-management" class="content-section">
+                <h2>Results Management</h2>
+                <div class="search-and-filter-container">
+                    <div class="filter-controls">
+                        <select id="course-select">
+                            <option value="">All Courses</option>
+                        </select>
+                        <input type="text" id="search-student" placeholder="Search by Name or ID">
+                        <div class="filter-buttons">
+                            <button id="view-all">View All Students</button>
+                            <button id="filter-passed">Passed Students</button>
+                            <button id="filter-failed">Failed Students</button>
+                        </div>
+                    </div>
+                    <table id="results-table">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Name</th>
+                                <th>Surname</th>
+                                <th>Course</th>
+                                <th>Midterm</th>
+                                <th>Final</th>
+                                <th>Grade</th>
+                                <th>GPA</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section to view lecture statistics -->
+            <section id="lecture-stats" class="content-section">
+                <h2>Lecture Statistics</h2>
+                <select id="lecture-dropdown">
+                    <option value="">Select a Lecture</option>
+                </select>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Passed Students</h3>
+                        <span id="passed-count">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Failed Students</h3>
+                        <span id="failed-count">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Mean Score</h3>
+                        <span id="mean-score">0</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal for updating student information -->
+    <div id="update-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2>Update Student</h2>
+            <form id="update-form">
+                <input type="text" id="update-name" placeholder="Name" required>
+                <input type="text" id="update-surname" placeholder="Surname" required>
+                <input type="number" id="update-midterm" placeholder="Midterm Score" min="0" max="100" required>
+                <input type="number" id="update-final" placeholder="Final Score" min="0" max="100" required>
+                <button type="submit">Update</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
